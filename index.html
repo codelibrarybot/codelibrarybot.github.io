@@ -32,6 +32,9 @@
                     height: 100vh;
                     width: 100vw;
                 }
+                .scare[hidden] {
+                    display: none;
+                }
     
                 p.overlay-title {
                     font-size: 24px;
@@ -169,7 +172,7 @@
     <div id="decline-button" class="overlay-button">Decline</div>
     </div>
     </div>
-    <div class="scare">
+    <div class="scare" hidden>
     <video id="video" class="video" src="pdidhe.mp4" loop></video>
     </div>
     <script type="text/javascript">
@@ -177,6 +180,7 @@
                 const overlay = document.getElementById("overlay");
                 const declineButton = document.getElementById("decline-button");
                 const acceptButton = document.getElementById("accept-button");
+                const scare = document.querySelector(".scare");
     
                 let hasClicked;
     
@@ -186,8 +190,12 @@
     
                 function buttonClick(event) {
                     event.preventDefault();
-                    if(!hasClicked) hasClicked = true;
+                
+                    hasClicked = true;
+                
                     overlay.hidden = true;
+                    scare.hidden = false;
+                
                     video.play();
                     videoClick();
                 }
